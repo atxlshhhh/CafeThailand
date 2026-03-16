@@ -1,234 +1,343 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zestiva | Fresh Bites & Healthy Vibes</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --accent-pink: #ff8fa3;
-            --accent-orange: #ffb347;
-            --bg-dark: #0a0a0a;
-            --glass: rgba(255, 255, 255, 0.03);
-            --border: rgba(255, 255, 255, 0.12);
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background-color: var(--bg-dark); color: white; font-family: 'Poppins', sans-serif; overflow-x: hidden; }
+<title>Zestiva</title>
 
-        /* --- BACKGROUND LAYER SYSTEM --- */
-        .site-container {
-            position: relative;
-            min-height: 100vh;
-            background: 
-                /* Glowing Lights Overlay */
-                radial-gradient(circle at 15% 20%, rgba(255, 179, 71, 0.15) 0%, transparent 25%),
-                radial-gradient(circle at 85% 20%, rgba(255, 179, 71, 0.15) 0%, transparent 25%),
-                /* Dark Vignette */
-                linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.9) 100%),
-                /* Main Image */
-                url('https://images.unsplash.com/photo-1534430480872-3498386e7a56?auto=format&fit=crop&q=80&w=2000'); 
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-        /* --- THE HANGING LIGHT BULBS EFFECT --- */
-        .light-bulbs {
-            position: absolute;
-            top: 0; left: 15%; width: 200px; height: 300px;
-            background: url('https://i.ibb.co/vzB7pLq/hanging-lights-png.png'); /* Simulated via CSS glow if image fails */
-            background-size: contain;
-            background-repeat: no-repeat;
-            filter: drop-shadow(0 0 10px orange);
-            pointer-events: none;
-        }
+<style>
 
-        /* --- NAVIGATION --- */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 8%;
-            position: relative;
-            z-index: 10;
-        }
-        .logo { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 700; color: #fff; }
-        .nav-links { display: flex; list-style: none; gap: 30px; align-items: center; }
-        .nav-links a { color: #fff; text-decoration: none; font-size: 14px; font-weight: 400; opacity: 0.8; }
-        .nav-links a.active { border-bottom: 2px solid var(--accent-pink); opacity: 1; }
-        .order-nav { background: rgba(255, 143, 163, 0.2); padding: 10px 25px; border-radius: 50px; border: 1px solid var(--accent-pink); }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins;
+scroll-behavior:smooth;
+}
 
-        /* --- HERO --- */
-        .hero { text-align: center; padding: 60px 20px; z-index: 5; position: relative; }
-        .hero h1 { 
-            font-family: 'Playfair Display', serif; 
-            font-size: clamp(60px, 8vw, 100px); 
-            letter-spacing: -2px;
-            margin-bottom: 5px;
-            position: relative;
-            display: inline-block;
-        }
-        .hero h1::after { content: '✨'; position: absolute; font-size: 20px; top: 20px; right: -30px; }
-        .hero h2 { font-size: 32px; font-weight: 400; color: #f0f0f0; margin-bottom: 10px; }
-        .hero p { font-size: 14px; color: #ccc; margin-bottom: 35px; letter-spacing: 0.5px; }
+body{
+background:#0b0b0b;
+color:white;
+}
 
-        /* --- WHATSAPP BUTTON --- */
-        .wa-btn {
-            display: inline-flex;
-            align-items: center;
-            background: linear-gradient(to right, #f77062 0%, #fe5196 100%);
-            padding: 15px 35px;
-            border-radius: 50px;
-            color: white;
-            text-decoration: none;
-            gap: 15px;
-            box-shadow: 0 10px 40px rgba(254, 81, 150, 0.4);
-            transition: 0.3s;
-        }
-        .wa-btn:hover { transform: scale(1.05); box-shadow: 0 15px 50px rgba(254, 81, 150, 0.6); }
+/* NAVBAR */
 
-        /* --- MENU SECTION --- */
-        .menu-preview { padding: 40px 5% 100px; }
-        .menu-title { text-align: center; font-family: 'Playfair Display', serif; font-size: 28px; margin-bottom: 40px; color: #ddd; }
-        
-        .menu-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-        }
+nav{
+position:fixed;
+top:0;
+width:100%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 40px;
+background:rgba(0,0,0,0.6);
+backdrop-filter:blur(8px);
+z-index:1000;
+}
 
-        .menu-card {
-            background: var(--glass);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 12px;
-            backdrop-filter: blur(15px);
-            transition: 0.4s;
-        }
-        .menu-card:hover { border-color: var(--accent-pink); transform: translateY(-10px); background: rgba(255,255,255,0.06); }
-        .menu-card img { width: 100%; height: 160px; object-fit: cover; border-radius: 15px; margin-bottom: 12px; }
-        .menu-card h4 { font-size: 15px; font-weight: 500; margin-bottom: 4px; }
-        .menu-card p { font-size: 11px; color: #999; margin-bottom: 15px; height: 32px; line-height: 1.4; }
-        
-        .card-footer { display: flex; justify-content: space-between; align-items: center; }
-        .price { font-size: 16px; font-weight: 600; }
-        .add-btn { width: 26px; height: 26px; border: 1px solid #555; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; cursor: pointer; }
+nav h2{
+color:#ffb199;
+}
 
-        /* --- FOOTER --- */
-        footer {
-            padding: 30px 8%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-top: 1px solid var(--border);
-            background: rgba(0,0,0,0.5);
-        }
-        .socials i { margin-right: 20px; color: #888; cursor: pointer; transition: 0.3s; }
-        .socials i:hover { color: var(--accent-pink); }
-        .copy { font-size: 12px; color: #666; }
+nav ul{
+display:flex;
+gap:25px;
+list-style:none;
+}
 
-        /* --- MOBILE --- */
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .hero h1 { font-size: 55px; }
-            .menu-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
-        }
-    </style>
+nav a{
+text-decoration:none;
+color:white;
+font-size:14px;
+}
+
+/* HERO */
+
+.hero{
+
+height:100vh;
+
+background:
+linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.9)),
+url("https://images.unsplash.com/photo-1504674900247-0877df9cc836");
+
+background-size:cover;
+background-position:center;
+
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px;
+
+}
+
+.hero h1{
+font-size:70px;
+letter-spacing:2px;
+}
+
+.hero h3{
+margin-top:10px;
+color:#ffb199;
+}
+
+.hero p{
+margin-top:10px;
+}
+
+.whatsapp-btn{
+margin-top:25px;
+background:linear-gradient(45deg,#ff7e5f,#ffb199);
+padding:15px 30px;
+border-radius:30px;
+color:white;
+text-decoration:none;
+font-weight:600;
+}
+
+/* MENU */
+
+.menu{
+padding:100px 20px;
+text-align:center;
+}
+
+.menu h2{
+margin-bottom:40px;
+}
+
+.menu-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:25px;
+max-width:1100px;
+margin:auto;
+}
+
+.card{
+background:rgba(255,255,255,0.05);
+border-radius:18px;
+overflow:hidden;
+backdrop-filter:blur(10px);
+transition:0.4s;
+border:1px solid rgba(255,255,255,0.1);
+}
+
+.card:hover{
+transform:translateY(-8px);
+box-shadow:0 10px 25px rgba(255,150,120,0.4);
+}
+
+.card img{
+width:100%;
+height:170px;
+object-fit:cover;
+}
+
+.card-content{
+padding:15px;
+}
+
+.price{
+color:#ffb199;
+font-weight:600;
+}
+
+/* ABOUT */
+
+.about{
+padding:80px 20px;
+background:#111;
+text-align:center;
+}
+
+.about p{
+max-width:700px;
+margin:auto;
+margin-top:20px;
+line-height:1.6;
+}
+
+/* CONTACT */
+
+.contact{
+padding:80px 20px;
+text-align:center;
+}
+
+.contact a{
+margin-top:20px;
+display:inline-block;
+background:#ff7e5f;
+padding:12px 25px;
+border-radius:25px;
+text-decoration:none;
+color:white;
+}
+
+/* FOOTER */
+
+footer{
+background:#111;
+padding:20px;
+text-align:center;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+.hero h1{
+font-size:40px;
+}
+
+nav ul{
+gap:15px;
+font-size:13px;
+}
+
+}
+
+</style>
+
 </head>
+
 <body>
 
-<div class="site-container">
-    <div class="light-bulbs"></div>
+<nav>
 
-    <nav>
-        <div class="logo">Zestiva</div>
-        <ul class="nav-links">
-            <li><a href="#" class="active">Home</a></li>
-            <li><a href="#">Menu</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
-            <li><a href="#" class="order-nav">Order Now</a></li>
-        </ul>
-    </nav>
+<h2>Zestiva</h2>
 
-    <header class="hero">
-        <h1>Zestiva</h1>
-        <h2>Fresh Bites & Healthy Vibes</h2>
-        <p>Healthy Homemade Food | Free Delivery in Alpha-2 | 12 PM – 10 PM</p>
-        
-        <a href="https://wa.me/910000000000" class="wa-btn">
-            <i class="fab fa-whatsapp" style="font-size: 24px;"></i>
-            <div style="text-align: left;">
-                <span style="display: block; font-size: 14px; font-weight: 600;">Order on WhatsApp</span>
-                <span style="font-size: 10px; opacity: 0.8;">Click to Chat</span>
-            </div>
-        </a>
-    </header>
+<ul>
+<li><a href="#home">Home</a></li>
+<li><a href="#menu">Menu</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
 
-    <section class="menu-preview">
-        <h3 class="menu-title">Menu Preview</h3>
-        <div class="menu-grid">
-            <div class="menu-card">
-                <img src="https://images.unsplash.com/photo-1610970881699-44a558f38f12?auto=format&fit=crop&q=80&w=400" alt="Juice">
-                <h4>Replacement Juice</h4>
-                <p>Green juice in bottle with fresh green apple.</p>
-                <div class="card-footer">
-                    <span class="price">₹40</span>
-                    <div class="add-btn">+</div>
-                </div>
-            </div>
-            <div class="menu-card">
-                <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&q=80&w=400" alt="Salad">
-                <h4>Moong Chana Salad</h4>
-                <p>Sprouted protein salad with fresh veggies.</p>
-                <div class="card-footer">
-                    <span class="price">₹50</span>
-                    <div class="add-btn">+</div>
-                </div>
-            </div>
-            <div class="menu-card">
-                <img src="https://images.unsplash.com/photo-1604497073476-82bc28d73b5c?auto=format&fit=crop&q=80&w=400" alt="Paneer">
-                <h4>Paneer Salad</h4>
-                <p>Cubes of fresh paneer with organic herbs.</p>
-                <div class="card-footer">
-                    <span class="price">₹60</span>
-                    <div class="add-btn">+</div>
-                </div>
-            </div>
-            <div class="menu-card">
-                <img src="https://images.unsplash.com/photo-1571328003758-4a3921661709?auto=format&fit=crop&q=80&w=400" alt="Shake">
-                <h4>Banana Shake</h4>
-                <p>Creamy smoothie with real banana slices.</p>
-                <div class="card-footer">
-                    <span class="price">₹40</span>
-                    <div class="add-btn">+</div>
-                </div>
-            </div>
-            <div class="menu-card">
-                <img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&q=80&w=400" alt="Lemon">
-                <h4>Lemon Water</h4>
-                <p>Refreshing mint lemon water with honey.</p>
-                <div class="card-footer">
-                    <span class="price">₹30</span>
-                    <div class="add-btn">+</div>
-                </div>
-            </div>
-        </div>
-    </section>
+</nav>
 
-    <footer>
-        <div class="socials">
-            <i class="fab fa-facebook-f"></i>
-            <i class="fab fa-instagram"></i>
-            <i class="fab fa-youtube"></i>
-            <i class="fab fa-x-twitter"></i>
-        </div>
-        <div class="copy">© 2026 Zestiva | All rights reserved</div>
-    </footer>
+<!-- HERO -->
+
+<section class="hero" id="home">
+
+<h1>Zestiva</h1>
+
+<h3>Fresh Bites & Healthy Vibes</h3>
+
+<p>Healthy Homemade Food | Alpha-2 Delivery | 12 PM – 10 PM</p>
+
+<a class="whatsapp-btn"
+href="https://wa.me/91XXXXXXXXXX?text=Hi%20I%20want%20to%20order%20from%20Zestiva"
+target="_blank">
+Order on WhatsApp
+</a>
+
+</section>
+
+<!-- MENU -->
+
+<section class="menu" id="menu">
+
+<h2>Our Menu</h2>
+
+<div class="menu-grid">
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1551024601-bec78aea704b">
+<div class="card-content">
+<h4>Banana Shake</h4>
+<p class="price">₹40</p>
 </div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1562967916-eb82221dfb92">
+<div class="card-content">
+<h4>Moong Chana Salad</h4>
+<p class="price">₹50</p>
+</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1604908176997-4318e5f9df94">
+<div class="card-content">
+<h4>Replacement Juice</h4>
+<p class="price">₹40</p>
+</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc">
+<div class="card-content">
+<h4>Lemon Water</h4>
+<p class="price">₹30</p>
+</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1604908177522-4328e5f9df91">
+<div class="card-content">
+<h4>Paneer Salad</h4>
+<p class="price">₹60</p>
+</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1514516870926-2060fcd31f0c">
+<div class="card-content">
+<h4>Veg Burger</h4>
+<p class="price">₹50</p>
+</div>
+</div>
+
+</div>
+
+</section>
+
+<!-- ABOUT -->
+
+<section class="about" id="about">
+
+<h2>About Zestiva</h2>
+
+<p>
+
+Zestiva is a modern healthy food brand serving fresh homemade meals in Alpha-2 Greater Noida.  
+Our goal is to deliver affordable, delicious and healthy food with a premium café-style experience.
+
+</p>
+
+</section>
+
+<!-- CONTACT -->
+
+<section class="contact" id="contact">
+
+<h2>Contact</h2>
+
+<p>Delivery Time: 12 PM – 10 PM</p>
+
+<p>Location: Alpha-2 Greater Noida</p>
+
+<a href="https://wa.me/91XXXXXXXXXX" target="_blank">
+
+Chat on WhatsApp
+
+</a>
+
+</section>
+
+<footer>
+
+<p>© 2026 Zestiva</p>
+
+</footer>
 
 </body>
 </html>
