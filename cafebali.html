@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zestiva | Fresh Bites & Healthy Vibes</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --pink-glow: #ff8fa3;
+            --orange-warm: #ffb347;
+            --dark-overlay: rgba(15, 15, 15, 0.85);
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: #050505;
+            color: #ffffff;
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* --- STYLISH BACKGROUND (Mountains/Bali) --- */
+        .page-wrapper {
+            background: 
+                /* Hanging Light Glows (Top) */
+                radial-gradient(circle at 10% 10%, rgba(255, 179, 71, 0.15) 0%, transparent 30%),
+                radial-gradient(circle at 30% 15%, rgba(255, 143, 163, 0.1) 0%, transparent 25%),
+                radial-gradient(circle at 80% 10%, rgba(255, 179, 71, 0.15) 0%, transparent 30%),
+                /* Main Background Image */
+                linear-gradient(var(--dark-overlay), var(--dark-overlay)),
+                url('https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?auto=format&fit=crop&q=80&w=2000'); /* Bali Mountain View */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 8%;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .nav-links { list-style: none; display: flex; gap: 30px; }
+        .nav-links a { color: #fff; text-decoration: none; font-size: 14px; opacity: 0.8; transition: 0.3s; }
+        .nav-links a:hover { opacity: 1; color: var(--pink-glow); }
+
+        .order-nav-btn {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 20px;
+            border-radius: 50px;
+            border: 1px solid var(--border);
+            backdrop-filter: blur(5px);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            text-align: center;
+            padding: 100px 20px 60px;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(60px, 10vw, 110px);
+            margin-bottom: 5px;
+            background: linear-gradient(to bottom, #ffffff, #d1d1d1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+
+        /* The little orange sparkle/dot in logo */
+        .hero h1::after {
+            content: '✦';
+            font-size: 25px;
+            position: absolute;
+            color: var(--orange-warm);
+            top: 20%;
+            margin-left: 10px;
+        }
+
+        .hero h2 {
+            font-size: 24px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 13px;
+            color: #aaa;
+            letter-spacing: 1px;
+            margin-bottom: 40px;
+        }
+
+        /* --- WHATSAPP BUTTON --- */
+        .wa-btn {
+            background: linear-gradient(45deg, #ff718a, #ffb347);
+            padding: 18px 40px;
+            border-radius: 60px;
+            color: white;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            font-weight: 600;
+            box-shadow: 0 10px 30px rgba(255, 113, 138, 0.4);
+            transition: 0.4s;
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .wa-btn:hover {
+            box-shadow: 0 15px 40px rgba(255, 113, 138, 0.6);
+            transform: scale(1.05);
+        }
+
+        /* --- MENU SECTION --- */
+        .menu-section {
+            padding: 80px 8%;
+        }
+
+        .menu-header {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            margin-bottom: 50px;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        /* --- FOOD CARDS --- */
+        .card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 25px;
+            padding: 15px;
+            backdrop-filter: blur(10px);
+            transition: 0.4s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--pink-glow);
+        }
+
+        .card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 20px;
+            margin-bottom: 15px;
+        }
+
+        .card h4 { font-size: 16px; margin-bottom: 5px; font-weight: 600; }
+        .card p { font-size: 11px; color: #888; margin-bottom: 15px; min-height: 33px;}
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price { font-weight: 600; font-size: 18px; color: #fff; }
+
+        .add-icon {
+            border: 1px solid #444;
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 40px 8%;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .social-icons i { margin-right: 20px; cursor: pointer; transition: 0.3s; }
+        .social-icons i:hover { color: var(--pink-glow); }
+
+        /* --- MOBILE OPTIMIZATION --- */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero h1 { font-size: 70px; }
+            .menu-grid { grid-template-columns: 1fr 1fr; }
+            .wa-btn { width: 100%; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+    <nav>
+        <div class="logo">Zestiva</div>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Menu</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+        <div class="order-nav-btn"><a href="#" style="text-decoration:none; color:white; font-size:13px;">Order Now</a></div>
+    </nav>
+
+    <section class="hero">
+        <h1>Zestiva</h1>
+        <h2>Fresh Bites & Healthy Vibes</h2>
+        <p>Healthy Homemade Food | Free Delivery in Alpha-2 | 12 PM – 10 PM</p>
+        
+        <a href="https://wa.me/911234567890" class="wa-btn">
+            <i class="fab fa-whatsapp" style="font-size: 24px;"></i>
+            <div style="text-align: left;">
+                <span style="display: block; font-size: 16px;">Order on WhatsApp</span>
+                <span style="font-size: 11px; opacity: 0.8; font-weight: 400;">Click to Chat</span>
+            </div>
+        </a>
+    </section>
+
+    <section class="menu-section">
+        <h3 class="menu-header">Menu Preview</h3>
+        
+        <div class="menu-grid">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1610970881699-44a558f38f12?auto=format&fit=crop&q=80&w=400" alt="Juice">
+                <h4>Replacement Juice</h4>
+                <p>Green juice in bottle with green apple.</p>
+                <div class="card-footer">
+                    <span class="price">₹40</span>
+                    <div class="add-icon">+</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&q=80&w=400" alt="Salad">
+                <h4>Moong Chana Salad</h4>
+                <p>Sprouted salad with vegetables.</p>
+                <div class="card-footer">
+                    <span class="price">₹50</span>
+                    <div class="add-icon">+</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1604497073476-82bc28d73b5c?auto=format&fit=crop&q=80&w=400" alt="Paneer">
+                <h4>Paneer Salad</h4>
+                <p>Cubes of paneer with herbs/veggies.</p>
+                <div class="card-footer">
+                    <span class="price">₹60</span>
+                    <div class="add-icon">+</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1571328003758-4a3921661709?auto=format&fit=crop&q=80&w=400" alt="Shake">
+                <h4>Banana Shake</h4>
+                <p>Creamy smoothie in glass with banana slices.</p>
+                <div class="card-footer">
+                    <span class="price">₹40</span>
+                    <div class="add-icon">+</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&q=80&w=400" alt="Lemon">
+                <h4>Lemon Water</h4>
+                <p>Fresh drink with mint and lemon slices.</p>
+                <div class="card-footer">
+                    <span class="price">₹30</span>
+                    <div class="add-icon">+</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="social-icons">
+            <i class="fab fa-facebook"></i>
+            <i class="fab fa-instagram"></i>
+            <i class="fab fa-youtube"></i>
+            <i class="fab fa-x-twitter"></i>
+        </div>
+        <p>© 2026 Zestiva | All rights reserved</p>
+    </footer>
+</div>
+
+</body>
+</html>
